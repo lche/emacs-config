@@ -11,7 +11,8 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 
-(setq package-user-dir "/Users/lche/.emacs.d")
+(setq package-user-dir "/Users/lche/.emacs.d/elpa/")
+(setq default-directory "/Users/lche/")
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 			 ("melpa" . "http://melpa.milkbox.net/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
@@ -22,8 +23,6 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
-
-(setq default-directory "/Users/lche/")
 
 ;; Save face-customization settings to init_look_and_feel.el
 (setq custom-file "~/.emacs.d/init/init_look_and_feel.el")
