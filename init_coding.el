@@ -1,30 +1,5 @@
 ;; init_coding.el
-;; Lauren Che
-;; 04/08/2016
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; All
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; iedit: Edit multiple instances of a word in a buffer
-;(require 'iedit)
-;(defun iedit-dwim (arg)
-;  "Starts iedit but uses \\[narrow-to-defun] to limit its scope."
-;  (interactive "P")
-;  (if arg
-;      (iedit-mode)
-;    (save-excursion
-;      (save-restriction
-;        (widen)
-;        ;; this function determines the scope of `iedit-start'.
-;        (if iedit-mode
-;            (iedit-done)
-;          ;; `current-word' can of course be replaced by other
-;          ;; functions.
-;          (narrow-to-defun)
-;          (iedit-start (current-word) (point-min) (point-max)))))))
-;(global-set-key (kbd "C-;") 'iedit-dwim)
-;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -38,6 +13,7 @@
 
 ;; Turn on line numbers
 (add-hook 'c-mode-hook 'linum-mode)
+(add-hook 'c-mode-hook 'electric-pair-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Scheme
@@ -51,12 +27,17 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Elpy: IDE environment
-(package-initialize)
-(elpy-enable)
+(use-package elpy
+  :ensure t
+  :config
+  (package-initialize)
+  (elpy-enable))
 
 ;; Pyflakes: for error checking
-(require 'flycheck-pyflakes)
-(add-hook 'python-mode-hook 'flycheck-mode)
+(use-package flycheck-pyflakes
+  :ensure t
+  :config
+  (add-hook 'python-mode-hook 'flycheck-mode))
 
 ;; Indentation
 (add-hook 'python-mode-hook
@@ -64,5 +45,9 @@
         (setq indent-tabs-mode t)
         (setq tab-width 4)
         (setq python-indent 4)))
+(add-hook 'python-mode-hook 'electric-pair-mode)
+(add-hook 'python-mode-hook 'linum-mode)
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
