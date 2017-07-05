@@ -17,9 +17,6 @@
 ;; You will find embeded help for most helm commands with \`C-h m'.\n\
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n\n"))
 
-(setq package-user-dir (directory-file-name
-                        (file-name-directory
-                         (directory-file-name default-directory))))
 (unless (member "helm.el" (directory-files default-directory))
   (setq package-load-list '((helm-core t) (helm t) (async t) (popup t)))
   (package-initialize))
