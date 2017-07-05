@@ -87,8 +87,8 @@ That is, a string used to represent it on the tab bar."
 
   (tabbar-mode 1))
 
-(use-pacakge gotham-theme
-             :ensure t)
+(use-package gotham-theme
+  :ensure t)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
