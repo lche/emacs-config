@@ -31,8 +31,9 @@
 (load "~/.emacs.d/init/init_coding.el")
 (load "~/.emacs.d/init/init_misc.el")
 (load "~/.emacs.d/init/init_look_and_feel.el")
+(load "~/.emacs.d/init/init_PAN.el")
 (load "~/.emacs.d/init/init_helm.el")
-
+n
 ;; ;; Force Emacs to recognize bash environment
 ;; (let ((path (shell-command-to-string ". ~/.bash_profile; echo -n $PATH")))
 ;;   (setq exec-path 

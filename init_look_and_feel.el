@@ -148,7 +148,7 @@ That is, a string used to represent it on the tab bar."
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (elfeed gotham-theme subatomic-theme jedi dash smartparens)))
+    (hexrgb palette rainbow-mode elfeed gotham-theme subatomic-theme jedi dash smartparens)))
  '(package-user-dir "/Users/lche/.emacs.d/elpa")
  '(password-cache-expiry 120)
  '(pos-tip-background-color "#A6E22E")
