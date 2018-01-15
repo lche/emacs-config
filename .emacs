@@ -1,4 +1,4 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Packages
 ;;
@@ -8,6 +8,7 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -29,32 +30,22 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'evil)
-(define-key evil-insert-state-map (kbd "C-u") 'evil-scroll-up)
-(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
-(define-key evil-visual-state-map (kbd "C-u") 'evil-scroll-up)
-(define-key evil-motion-state-map (kbd "C-u") 'evil-scroll-up)
-(evil-set-initial-state 'term-mode 'emacs)
-(evil-mode 1)
+(use-package evil
+  :ensure t
+  :bind (:map evil-insert-state-map
+	 ("C-u" . evil-scroll-up)
+	 :map evil-normal-state-map
+	 ("C-u" . evil-scroll-up)
+	 :map evil-visual-state-map
+	 ("C-u" . evil-scroll-up)
+	 :map evil-motion-state-map
+	 ("C-u" . evil-scroll-up))
+  :config
+  (evil-set-initial-state 'term-mode 'emacs))
+(evil-mode)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; General
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'general)
-(setq general-default-keymaps 'evil-normal-state-map)
-(setq my-leader1 ",")
-(setq my-leader2 "M-;")
-
-(general-define-key :prefix my-leader1
-		    :non-normal-prefix my-leader2
-		    "f" 'find-file
-		    "/" 'swiper
-		    "b" 'switch-to-buffer
-		    "h" 'mark-whole-buffer
-		    "x" 'counsel-M-x)
+(use-package counsel
+  :ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -62,14 +53,16 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'hydra)
-(defhydra hydra-evil-normal (evil-normal-state-map ",")
-  "Hydra for evil-normal mode"
-  ("f" find-file "find-file")
-  ("/" swiper "swiper")
-  ("b" switch-to-buffer "switch-to-buffer")
-  ("h" mark-whole-buffer "mark-whole-buffer")
-  ("x" counsel-M-x "counsel-M-x"))
+(use-package hydra
+  :ensure t
+  :config
+  (defhydra hydra-evil-normal (evil-normal-state-map ",")
+    "Hydra for evil-normal mode"
+    ("f" find-file "find-file")
+    ("/" swiper "swiper")
+    ("b" switch-to-buffer "switch-to-buffer")
+    ("h" mark-whole-buffer "mark-whole-buffer")
+    ("x" counsel-M-x "counsel-M-x")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -77,26 +70,53 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
-(setq enable-recursive-minibuffers t)
-(global-set-key "\C-s" 'swiper)
-(global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key (kbd "<f6>") 'ivy-resume)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "<f1> f") 'counsel-describe-function)
-(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-(global-set-key (kbd "<f1> l") 'counsel-find-library)
-(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-(global-set-key (kbd "C-c g") 'counsel-git)
-(global-set-key (kbd "C-c j") 'counsel-git-grep)
-(global-set-key (kbd "C-c k") 'counsel-ag)
-(global-set-key (kbd "C-x l") 'counsel-locate)
-(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-(define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
-(define-key evil-normal-state-map (kbd "M-x") 'counsel-M-x)
+(use-package ivy
+  :ensure t
+  :bind (
+  ("\C-s" . swiper)
+  ("C-c C-r" . ivy-resume)
+  ("<f6>" . ivy-resume)
+  ("M-x" . counsel-M-x)
+  ("C-x C-f" . counsel-find-file)
+  ("<f1> f" . counsel-describe-function)
+  ("<f1> v" . counsel-describe-variable)
+  ("<f1> l" . counsel-find-library)
+  ("<f2> i" . counsel-info-lookup-symbol)
+  ("<f2> u" . counsel-unicode-char)
+  ("C-c g" . counsel-git)
+  ("C-c j" . counsel-git-grep)
+  ("C-c k" . counsel-ag)
+  ("C-x l" . counsel-locate)
+  ("C-S-o" . counsel-rhythmbox)
+  :map read-expression-map
+  ("C-r" . counsel-expression-history)
+  :map evil-normal-state-map
+  ("M-x" . counsel-M-x))
+  :config
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t))
+(ivy-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; General
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package general
+  :ensure t
+  :config
+  (setq general-default-keymaps 'evil-normal-state-map)
+  (setq my-leader1 ",")
+  (setq my-leader2 "M-;")
+
+  (general-define-key :prefix my-leader1
+		      :non-normal-prefix my-leader2
+		      "f" 'find-file
+		      "/" 'swiper
+		      "b" 'switch-to-buffer
+		      "h" 'mark-whole-buffer
+		      "x" 'counsel-M-x))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -107,8 +127,10 @@
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
 
-(require 'switch-window)
-(global-set-key (kbd "C-x o") 'switch-window)
+(use-package switch-window
+  :ensure t
+  :bind
+  ("C-x o" . switch-window))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -116,27 +138,9 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'magit)
+(use-package magit
+  :ensure t)  
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; emms
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; If you run into problems, use the accepted answer from the following:
-;; https://stackoverflow.com/questions/9147823/emms-error-dont-know-how-to-play-track
-
-(setq exec-path (append exec-path '("/usr/local/bin")))
-(require 'emms-setup)
-(require 'emms-player-mplayer)
-(emms-standard)
-(emms-default-players)
-(define-emms-simple-player mplayer '(file url)
-      (regexp-opt '(".ogg" ".mp3" ".wav" ".mpg" ".mpeg" ".wmv" ".wma"
-                    ".mov" ".avi" ".divx" ".ogm" ".asf" ".mkv" "http://" "mms://"
-                    ".rm" ".rmvb" ".mp4" ".flac" ".vob" ".m4a" ".flv" ".ogv" ".pls"))
-      "mplayer" "-slave" "-quiet" "-really-quiet" "-fullscreen")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Programming
@@ -159,7 +163,8 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load "~/.emacs.d/init/init_PAN.el")
+(if (file-exists-p "~/.emacs.d/init/init_PAN.el")
+    (load "~/.emacs.d/init/init_PAN.el"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
