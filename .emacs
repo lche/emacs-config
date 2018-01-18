@@ -177,11 +177,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (adwaita)))
+ '(custom-enabled-themes (quote (zerodark)))
+ '(custom-safe-themes
+   (quote
+    ("e3f648bb477a2e2332124f5ca8bd070e8624f152be6b4478668a69e5de7510ff" default)))
+ '(electric-pair-mode t)
  '(indent-tabs-mode nil)
  '(package-selected-packages
    (quote
-    (switch-window evil-surround general ace-window emms which-key ivy magit evil))))
+    (zerodark-theme switch-window evil-surround general ace-window emms which-key ivy magit evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
