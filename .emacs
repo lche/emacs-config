@@ -52,6 +52,11 @@
   :ensure t)
 (flycheck-mode)
 
+(use-package elpy
+  :ensure t
+  :requires pylint)
+(elpy-enable)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Custom
