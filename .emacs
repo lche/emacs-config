@@ -67,7 +67,17 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Custom
+;; Misc.
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package undo-tree
+  :ensure t
+  :config
+  (global-undo-tree-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Custom-set Variables
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (custom-set-variables
@@ -81,7 +91,7 @@
     ("ff79b206ad804c41a37b7b782aca44201edfa8141268a6cdf60b1c0916343bd4" default)))
  '(package-selected-packages
    (quote
-    (zerodark-theme elpy flycheck auto-complete switch-window use-package)))
+    (undo-tree zerodark-theme elpy flycheck auto-complete switch-window use-package)))
  '(show-trailing-whitespace t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
