@@ -12,9 +12,9 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-			 ("marmalade" . "https://marmalade-repo.org/packages/")
-			 ("melpa" . "http://melpa.milkbox.net/packages/")
-			 ("org" . "http://orgmode.org/elpa/")))
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("org" . "http://orgmode.org/elpa/")))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -26,7 +26,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Appearance
+;; Appearance and Behavior
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -63,7 +63,8 @@
 (use-package whitespace
   :config
   (setq whitespace-style '(face empty tabs lines-tail trailing))
-  (global-whitespace-mode t))
+  (global-whitespace-mode t)
+  :hook prog-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -85,13 +86,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (zerodark)))
+ '(custom-enabled-themes (quote (adwaita)))
  '(custom-safe-themes
    (quote
     ("ff79b206ad804c41a37b7b782aca44201edfa8141268a6cdf60b1c0916343bd4" default)))
  '(package-selected-packages
    (quote
     (undo-tree zerodark-theme elpy flycheck auto-complete switch-window use-package)))
+ '(show-paren-mode t)
  '(show-trailing-whitespace t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
