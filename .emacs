@@ -71,7 +71,6 @@
 (use-package whitespace
   :config
   (setq whitespace-style '(face empty tabs lines-tail trailing))
-  (global-whitespace-mode t)
   :hook prog-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
