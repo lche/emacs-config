@@ -73,6 +73,11 @@
   (setq whitespace-style '(face empty tabs lines-tail trailing))
   :hook prog-mode)
 
+(use-package hl-line
+  :config
+  (set-face-attribute hl-line-face nil :underline t)
+  :hook prog-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Misc.
