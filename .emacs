@@ -76,6 +76,13 @@
   :config
   (set-face-attribute hl-line-face nil :underline t))
 
+(use-package linum-mode
+  :hook prog-mode)
+
+(use-package smartparens
+  :ensure t
+  :hook prog-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Misc.
@@ -104,7 +111,7 @@
     ("ff79b206ad804c41a37b7b782aca44201edfa8141268a6cdf60b1c0916343bd4" default)))
  '(package-selected-packages
    (quote
-    (undo-tree zerodark-theme elpy flycheck auto-complete switch-window use-package)))
+    (smartparens neotree undo-tree zerodark-theme elpy flycheck auto-complete switch-window use-package)))
  '(show-paren-mode t)
  '(show-trailing-whitespace t))
 (custom-set-faces
