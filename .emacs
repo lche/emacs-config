@@ -21,7 +21,6 @@
 (setq package-enable-at-startup nil)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
                          ("org" . "http://orgmode.org/elpa/")))
 (package-initialize)
 
@@ -55,10 +54,6 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package auto-complete
-  :ensure t)
-(ac-config-default)
-
 (use-package flycheck
   :ensure t)
 (flycheck-mode)
@@ -81,6 +76,7 @@
 
 (use-package smartparens
   :ensure t
+  :requires smartparens-config
   :hook prog-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -120,3 +116,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
