@@ -37,7 +37,8 @@
 ;; Helm
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'helm-config)
+(use-package helm-config
+  :ensure t)
 (helm-mode 1)
 (define-key global-map [remap find-file] 'helm-find-files)
 (define-key global-map [remap occur] 'helm-occur)
