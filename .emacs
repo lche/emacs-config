@@ -39,11 +39,17 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq org-todo-keywords
       '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
-(setq org-capture-templates '(("w" "Work [inbox]" entry
+(setq org-capture-templates '(("w" "Inbox [work]" entry
 			       (file+headline "~/org/work/inbox.org" "Tasks")
 			       "* TODO %i%?")
-			      ("h" "home [inbox]" entry
+			      ("h" "Inbox [home]" entry
 			       (file+headline "~/org/home/inbox.org" "Tasks")
+			       "* TODO %i%?")
+			      ("e" "Tickler [work]" entry
+			       (file+headline "~/org/work/tickler.org" "Tickler")
+			       "* TODO %i%?")
+			      ("j" "Tickler [home]" entry
+			       (file+headline "~/org/home/tickler.org" "Tickler")
 			       "* TODO %i%?")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -137,6 +143,7 @@
  '(custom-safe-themes
    (quote
     ("ff79b206ad804c41a37b7b782aca44201edfa8141268a6cdf60b1c0916343bd4" default)))
+ '(org-agenda-files (quote ("~/org/home/tickler.org")))
  '(package-selected-packages
    (quote
     (helm smartparens neotree undo-tree zerodark-theme elpy flycheck auto-complete switch-window use-package)))
