@@ -39,6 +39,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq org-todo-keywords
       '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+(setq org-capture-templates '(("w" "Work [inbox]" entry
+			       (file+headline "~/org/work/inbox.org" "Tasks")
+			       "* TODO %i%?")
+			      ("h" "home [inbox]" entry
+			       (file+headline "~/org/home/inbox.org" "Tasks")
+			       "* TODO %i%?")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Helm
