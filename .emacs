@@ -127,6 +127,11 @@
   :config
   (global-undo-tree-mode))
 
+(use-package neotree
+  :ensure t
+  :config
+  (global-set-key [f8] 'neotree-toggle))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Custom-set Variables
@@ -146,7 +151,7 @@
  '(org-agenda-files (quote ("~/org/home/tickler.org")))
  '(package-selected-packages
    (quote
-    (helm smartparens neotree undo-tree zerodark-theme elpy flycheck auto-complete switch-window use-package)))
+    (web-mode helm smartparens neotree undo-tree zerodark-theme elpy flycheck auto-complete switch-window use-package)))
  '(show-paren-mode t)
  '(show-trailing-whitespace t))
 (custom-set-faces
