@@ -92,10 +92,6 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package flycheck
-  :ensure t)
-(flycheck-mode)
-
 (use-package elpy
   :ensure t
   :requires pylint)
@@ -116,6 +112,14 @@
   :ensure t
   :requires smartparens-config
   :hook prog-mode)
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+(use-package magit
+  :ensure t
+  :bind ("C-x g" . magit-status))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -144,14 +148,15 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
- '(custom-enabled-themes (quote (misterioso)))
+ '(custom-enabled-themes (quote (zerodark)))
  '(custom-safe-themes
    (quote
-    ("ff79b206ad804c41a37b7b782aca44201edfa8141268a6cdf60b1c0916343bd4" default)))
+    ("e39ff005e524c331b08d613109bff0b55fc21c64914c4a243faa70f330015389" "ff79b206ad804c41a37b7b782aca44201edfa8141268a6cdf60b1c0916343bd4" default)))
+ '(global-hl-line-mode t)
  '(org-agenda-files (quote ("~/org/home/tickler.org")))
  '(package-selected-packages
    (quote
-    (web-mode helm smartparens neotree undo-tree zerodark-theme elpy flycheck auto-complete switch-window use-package)))
+    (magit web-mode helm smartparens neotree undo-tree zerodark-theme elpy flycheck auto-complete switch-window use-package)))
  '(show-paren-mode t)
  '(show-trailing-whitespace t))
 (custom-set-faces
