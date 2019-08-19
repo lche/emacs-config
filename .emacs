@@ -51,6 +51,9 @@
 			      ("j" "Tickler [home]" entry
 			       (file+headline "~/org/home/tickler.org" "Tickler")
 			       "* TODO %i%?")))
+
+(add-hook 'org-mode-hook 'toggle-truncate-lines)
+(add-hook 'org-mode-hook 'toggle-word-wrap)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Helm
@@ -151,7 +154,7 @@
  '(custom-enabled-themes (quote (zerodark)))
  '(custom-safe-themes
    (quote
-    ("e39ff005e524c331b08d613109bff0b55fc21c64914c4a243faa70f330015389" "ff79b206ad804c41a37b7b782aca44201edfa8141268a6cdf60b1c0916343bd4" default)))
+    ("bce3ae31774e626dce97ed6d7781b4c147c990e48a35baedf67e185ebc544a56" "e39ff005e524c331b08d613109bff0b55fc21c64914c4a243faa70f330015389" "ff79b206ad804c41a37b7b782aca44201edfa8141268a6cdf60b1c0916343bd4" default)))
  '(global-hl-line-mode t)
  '(org-agenda-files (quote ("~/org/home/tickler.org")))
  '(package-selected-packages
